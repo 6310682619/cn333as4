@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -18,10 +19,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
+import com.example.randomimage.ui.theme.black
+import com.example.randomimage.ui.theme.wood
 
 enum class ImageCategory(val displayName: String) {
     ALBUM("Album"),
@@ -74,9 +78,11 @@ fun RandomImageScreen() {
         )
         Box(
             modifier = Modifier
+                .background(color = androidx.compose.ui.graphics.Color.White)
                 .fillMaxWidth()
                 .clickable(onClick = { expanded = true })
                 .padding(vertical = 16.dp, horizontal = 12.dp)
+
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -122,15 +128,20 @@ fun RandomImageScreen() {
         TextField(
             value = width,
             onValueChange = { width = it },
-            label = { Text(text = "Width (8-2000 pixels)") },
-            modifier = Modifier.fillMaxWidth()
+            label = { Text(text = "Width (8-2000 pixels)" ,
+                color = black) },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         Spacer(modifier = Modifier.height(16.dp))
         TextField(
             value = height,
             onValueChange = { height = it },
-            label = { Text(text = "Height (8-2000 pixels)") },
-            modifier = Modifier.fillMaxWidth()
+            label = { Text(text = "Height (8-2000 pixels)",
+                color = black) },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+
         )
 
         Text(
@@ -159,7 +170,8 @@ fun RandomImageScreen() {
                     errorMessage = "Please enter width and height."
                 }
             },
-            modifier = Modifier.padding(top = 16.dp)
+            modifier = Modifier.padding(top = 16.dp),
+
         ) {
             Text(text = "Show Image")
         }
